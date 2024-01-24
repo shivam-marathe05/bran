@@ -4,4 +4,6 @@ from hello.views import UserList
 
 app_name = "hello"
 
-urlpatterns = [re_path(r".*", UserList.as_view(), name="get-users")]
+urlpatterns = [
+    re_path(r".*", UserList.as_view(), name="get-users"),
+]
