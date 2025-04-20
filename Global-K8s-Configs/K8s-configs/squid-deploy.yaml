@@ -24,15 +24,4 @@ spec:
       - name: squid-conf
         configMap:
           name: squid-proxy-conf
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: squid-proxy
-  namespace: fampay-dev
-spec:
-  selector: { app: squid-proxy }
-  ports:
-  - port: 3128
-    targetPort: 3128
-    protocol: TCP
+
