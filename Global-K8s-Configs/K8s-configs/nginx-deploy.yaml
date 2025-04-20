@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-proxy
+  namespace: fampay-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels: { app: nginx-proxy }
+  template:
+    metadata:
+      labels: { app: nginx-proxy }
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:stable-alpine
+        volumeMounts:
+        - name: proxy-conf
+          mountPath: /etc/nginx/conf.d/default.conf
+          subPath: default.conf
+        ports:
+        - containerPort: 80
+      volumes:
+      - name: proxy-conf
+        configMap:
+          name: nginx-proxy-conf

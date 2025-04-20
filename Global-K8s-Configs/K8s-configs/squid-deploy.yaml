@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: squid-proxy
+  namespace: fampay-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels: { app: squid-proxy }
+  template:
+    metadata:
+      labels: { app: squid-proxy }
+    spec:
+      containers:
+      - name: squid
+        image: sameersbn/squid:3.5.27-2
+        volumeMounts:
+        - name: squid-conf
+          mountPath: /etc/squid/squid.conf
+          subPath: squid.conf
+        ports:
+        - containerPort: 3128
+      volumes:
+      - name: squid-conf
+        configMap:
+          name: squid-proxy-conf
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: squid-proxy
+  namespace: fampay-dev
+spec:
+  selector: { app: squid-proxy }
+  ports:
+  - port: 3128
+    targetPort: 3128
+    protocol: TCP

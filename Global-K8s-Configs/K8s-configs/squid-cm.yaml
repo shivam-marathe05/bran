@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: squid-proxy-conf
+  namespace: fampay-dev
+data:
+  squid.conf: |
+    http_port 3128
+    # ACL to block any traffic to the 'bran' service
+    acl block_bran dstdomain bran.fampay-dev.svc.cluster.local
+    http_access deny block_bran
+
+    # Allow localhost (for health checks, etc.)
+    acl to_localhost dst 127.0.0.0/8
+    http_access allow to_localhost
+
+    # Allow all other traffic
+    http_access allow all
+
+    # Logging
+    access_log /var/log/squid/access.log
+    cache_log /var/log/squid/cache.log
