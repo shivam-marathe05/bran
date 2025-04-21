@@ -31,7 +31,7 @@ curl -s http://localhost:30080/bran/metrics      # 200
 kubectl exec deploy/bran  -- bash 
 curl -vk http://hodr.fampay-dev.svc.cluster.local:8080  # 200
 # Hodor ➜ Bran (should timeout)
-kubectl exec deploy/hodr -- bash 
+kubectl exec deploy/hodr -- sh
 curl -vk http://bran.fampay-dev.svc.cluster.local:8000  # timeout
 # Done.
 # In order to update your application , please run below script

@@ -1,0 +1,28 @@
+# don't send your Git history
+.git
+.gitignore
+
+# Python/Go caches
+**/__pycache__/
+**/*.py[cod]
+**/bin/
+**/pkg/
+
+# virtualenv, venv, local env files
+env/
+venv/
+.env
+*.db
+
+# IDE/editor cruft
+.vscode/
+.idea/
+*.swp
+*.tar
+
+# node_modules, build artifacts, docs, tests, etc
+node_modules/
+dist/
+build/
+docs/
+tests/

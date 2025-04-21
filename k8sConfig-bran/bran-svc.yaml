@@ -7,8 +7,9 @@ spec:
   selector:
     app: bran
   ports:
-    - port: 8000
-      targetPort: 8000
-      protocol: TCP
+  - name: http
+    port: 8000
+    protocol: TCP
+    targetPort: 8000
   type: ClusterIP
 

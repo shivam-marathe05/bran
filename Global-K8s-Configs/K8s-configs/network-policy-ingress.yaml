@@ -19,6 +19,13 @@ spec:
     ports:
     - port: 8000
       protocol: TCP
+  - from:
+    - podSelector:
+        matchLabels:
+          app: promietheus
+    ports:
+    - port: 8000
+      protocol: TCP
   podSelector:
     matchLabels:
       app: bran

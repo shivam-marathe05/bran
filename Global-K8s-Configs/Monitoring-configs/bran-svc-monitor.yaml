@@ -1,0 +1,25 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    release: prometheus
+  name: bran-servicemonitor
+  namespace: monitoring
+spec:
+  endpoints:
+  - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+    honorLabels: true
+    interval: 30s
+    path: /metrics
+    port: http
+    scheme: http
+    scrapeTimeout: 15s
+    tlsConfig:
+      insecureSkipVerify: true
+  jobLabel: bran
+  namespaceSelector:
+    matchNames:
+    - fampay-dev
+  selector:
+    matchLabels:
+      app: bran
