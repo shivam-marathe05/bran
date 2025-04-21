@@ -33,7 +33,7 @@ spec:
             name: bran-secrets
         - configMapRef:
             name: bran-config
-        image: localhost/bran-app:latest
+        image: bran-app:latest
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3

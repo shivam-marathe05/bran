@@ -4,11 +4,17 @@ metadata:
   name: nginx-proxy
   namespace: fampay-dev
 spec:
-  type: NodePort
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 30080
+    port: 80
+    protocol: TCP
+    targetPort: 80
   selector:
     app: nginx-proxy
-  ports:
-  - port: 80
-    targetPort: 80
-    nodePort: 30080
-    protocol: TCP
+  sessionAffinity: None
+  type: NodePort

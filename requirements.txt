@@ -1,0 +1,8 @@
+Django==5.0.1
+djangorestframework==3.14.0
+celery[redis,eventlet]==5.2.7
+redis[hiredis]==4.5.1
+dj-database-url==2.1.0
+python-dotenv==1.0.1
+django-prometheus==2.3.1
+

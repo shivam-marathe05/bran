@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: bran-ingress
+  namespace: fampay-dev
+spec:
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: nginx-proxy
+    ports:
+    - port: 8000
+      protocol: TCP
+  - from:
+    - podSelector:
+        matchLabels:
+          app: bran
+    ports:
+    - port: 8000
+      protocol: TCP
+  podSelector:
+    matchLabels:
+      app: bran
+  policyTypes:
+  - Ingress
